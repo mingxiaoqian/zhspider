@@ -14,7 +14,6 @@ BOT_NAME = 'chinasarftspider'
 SPIDER_MODULES = ['chinasarftspider.spiders']
 NEWSPIDER_MODULE = 'chinasarftspider.spiders'
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'chinasarftspider (+http://www.yourdomain.com)'
 
@@ -88,3 +87,4 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+LOG_LEVEL = 'WARNING'
