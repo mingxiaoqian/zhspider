@@ -9,6 +9,18 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
+import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__) + "../../../screenplay"))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'screenplay.settings'
+
+# from django.core.wsgi import get_wsgi_application
+# application = get_wsgi_application()
+
+import django
+django.setup()
+
 BOT_NAME = 'chinasarftspider'
 
 SPIDER_MODULES = ['chinasarftspider.spiders']
@@ -63,9 +75,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'chinasarftspider.pipelines.ChinasarftspiderPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'chinasarftspider.pipelines.ChinasarftspiderPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

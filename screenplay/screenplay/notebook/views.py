@@ -4,6 +4,9 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from datetime import datetime
+from .models import ScreenPlay
+
 
 def index(request):
-    return render(request, 'home.html')
+    screenplay_list = ScreenPlay.objects.all()
+    return render(request, 'home.html', {'post_list': screenplay_list})

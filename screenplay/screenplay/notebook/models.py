@@ -8,10 +8,13 @@ class ScreenPlay(models.Model):
     filling_unit = models.CharField(max_length=128)
     author = models.CharField(max_length=64)
     result = models.CharField(max_length=32)
-    region = models.CharField(max_length=32)
+    case_type = models.CharField(max_length=16, default="unknown")
+    region = models.CharField(max_length=32, null=True)
+    case_time_start = models.CharField(max_length=32, null=True)
+    case_time_end = models.CharField(max_length=32, null=True)
+    case_time = models.CharField(max_length=32, null=True)
     case_url = models.URLField(max_length=256)
     path_url = models.URLField(max_length=256)
-    case_time = models.CharField(max_length=32)
 
 
     def __str__(self):
