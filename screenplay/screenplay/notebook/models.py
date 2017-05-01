@@ -16,6 +16,8 @@ class ScreenPlay(models.Model):
     case_url = models.URLField(max_length=256)
     path_url = models.URLField(max_length=256)
 
+    class Meta:
+        db_table = "screenplay"
 
     def __str__(self):
         return self.name
