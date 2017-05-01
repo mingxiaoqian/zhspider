@@ -2,22 +2,62 @@
 
 {% block content %}
 <div class="posts">
-    {% for post in post_list %}
-        <section class="post">
-            <header class="post-header">
-                <h2 class="post-title">{{ post.title }}</h2>
-
-                    <p class="post-meta">
-                        Time:  <a class="post-author" href="#">{{ post.date_time }}</a> <a class="post-category post-category-js" href="#">{{ post.category }}</a>
-                    </p>
-            </header>
-
-                <div class="post-description">
-                    <p>
-                        {{ post.content }}
-                    </p>
-                </div>
-        </section>
-    {% endfor %}
+    <div class="heading">总计<a style="color: #ff7f50">{{post_count}}</a>全国电影剧本（梗概）备案、立项</div>
+    <p>
+        <a href="?page=1">首页</a>
+        {% if post_list.has_previous %}
+        <a href="?page={{ post_list.previous_page_number }}">上一页</a>
+        {% endif %}
+        {# post_list.paginator.number_pages 返回总页数 #}
+        Page {{ post_list.number }} of {{ post_list.paginator.num_pages }}.
+        {% if post_list.has_next %}
+        <a href="?page={{ post_list.next_page_number }}">下一页</a>
+        {% endif %}
+        <a href="?page={{ post_list.paginator.num_pages }}">尾页</a>
+    </p>
+    <div id="divt1" style="margin: 0px auto">
+        <table width="100%" bordercolor="#AFADAE" border="0px">
+            <tbody>
+            <tr style="border:1px #ececec solid; text-align:center;height:48px;">
+                <th style="text-align:center; width:13em;border:1px solid #AFADAE;" align="center">备案立项号</th>
+                <th style="text-align:center;width:10em;border:1px solid #AFADAE;" align="center">片名</th>
+                <th style="text-align:center;width:23em;border:1px solid #AFADAE;" align="center">备案单位</th>
+                <th style="text-align:center;width:4em;border:1px solid #AFADAE;" align="center">编剧</th>
+                <th style="text-align:center;width:8em;border:1px solid #AFADAE;" align="center">备案结果</th>
+            </tr>
+            {% for post in post_list %}
+            <tr height="48px">
+                <td style="text-align:center; width:13em;border:1px solid #AFADAE;" valign="middle" align="center">
+                    <a href="{{post.case_url}}">{{post.case_no}}</a>
+                </td>
+                <td style="text-align:center;width:10em;border:1px solid #AFADAE;" valign="middle" align="center">
+                    {{post.name}}
+                </td>
+                <td style="text-align:center;width:10em;border:1px solid #AFADAE;" valign="middle" align="center">
+                    {{post.filling_unit}}
+                </td>
+                <td style="text-align:center;width:10em;border:1px solid #AFADAE;" valign="middle" align="center">
+                    {{post.author}}
+                </td>
+                <td style="text-align:center;width:10em;border:1px solid #AFADAE;" valign="middle" align="center">
+                    {{post.result}}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p>
+            <a href="?page=1">首页</a>
+            {% if post_list.has_previous %}
+            <a href="?page={{ post_list.previous_page_number }}">上一页</a>
+            {% endif %}
+            {# post_list.paginator.number_pages 返回总页数 #}
+            Page {{ post_list.number }} of {{ post_list.paginator.num_pages }}.
+            {% if post_list.has_next %}
+            <a href="?page={{ post_list.next_page_number }}">下一页</a>
+            {% endif %}
+            <a href="?page={{ post_list.paginator.num_pages }}">尾页</a>
+        </p>
+    </div>
 </div><!-- /.blog-post -->
 {% endblock %}
