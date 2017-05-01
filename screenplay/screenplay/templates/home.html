@@ -16,17 +16,19 @@
         <a href="?page={{ post_list.paginator.num_pages }}">尾页</a>
     </p>
     <div id="divt1" style="margin: 0px auto">
-        <table width="100%" bordercolor="#AFADAE" border="0px">
+        <table width="100%" bordercolor="#AFADAE" border="0px" style="border-collapse:collapse">
             <tbody>
-            <tr style="border:1px #ececec solid; text-align:center;height:48px;">
+            <tr style="border:1px #ececec solid; text-align:center;height:32px;">
                 <th style="text-align:center; width:13em;border:1px solid #AFADAE;" align="center">备案立项号</th>
                 <th style="text-align:center;width:10em;border:1px solid #AFADAE;" align="center">片名</th>
                 <th style="text-align:center;width:23em;border:1px solid #AFADAE;" align="center">备案单位</th>
                 <th style="text-align:center;width:4em;border:1px solid #AFADAE;" align="center">编剧</th>
                 <th style="text-align:center;width:8em;border:1px solid #AFADAE;" align="center">备案结果</th>
+                <th style="text-align:center;width:8em;border:1px solid #AFADAE;" align="center">影片类型</th>
+                <th style="text-align:center;width:8em;border:1px solid #AFADAE;" align="center">通知链接</th>
             </tr>
             {% for post in post_list %}
-            <tr height="48px">
+            <tr height="32px">
                 <td style="text-align:center; width:13em;border:1px solid #AFADAE;" valign="middle" align="center">
                     <a href="{{post.case_url}}">{{post.case_no}}</a>
                 </td>
@@ -41,6 +43,12 @@
                 </td>
                 <td style="text-align:center;width:10em;border:1px solid #AFADAE;" valign="middle" align="center">
                     {{post.result}}
+                </td>
+                <td style="text-align:center;width:10em;border:1px solid #AFADAE;" valign="middle" align="center">
+                    {{post.case_type}}
+                </td>
+                <td style="text-align:center; width:13em;border:1px solid #AFADAE;" valign="middle" align="center">
+                    <a href="{{post.path_url}}">点击查看</a>
                 </td>
             </tr>
             {% endfor %}
