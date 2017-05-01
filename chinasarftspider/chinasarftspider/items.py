@@ -11,7 +11,7 @@ from scrapy_djangoitem import DjangoItem
 from screenplay.notebook.models import ScreenPlay
 
 def check_new_url(url):
-    qs = ScreenPlay.objects.filter(case_url=url)
+    qs = ScreenPlay.objects.filter(path_url=url)
     if qs.count() < 1:
         return True
     else:

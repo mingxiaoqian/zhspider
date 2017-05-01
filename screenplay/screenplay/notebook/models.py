@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class ScreenPlay(models.Model):
-    case_no = models.CharField(max_length=64, primary_key=True)
+    case_no = models.CharField(max_length=64)
     name = models.CharField(max_length=64)
     filling_unit = models.CharField(max_length=128)
     author = models.CharField(max_length=64)
