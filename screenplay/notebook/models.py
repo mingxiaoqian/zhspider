@@ -10,11 +10,10 @@ class ScreenPlay(models.Model):
     result = models.CharField(max_length=32)
     case_type = models.CharField(max_length=16, default="unknown")
     region = models.CharField(max_length=32, null=True)
-    case_time_start = models.CharField(max_length=32, null=True)
-    case_time_end = models.CharField(max_length=32, null=True)
     case_time = models.CharField(max_length=32, null=True)
     case_url = models.URLField(max_length=256)
     path_url = models.URLField(max_length=256)
+    period = models.URLField(max_length=32)
 
     class Meta:
         db_table = "screenplay"

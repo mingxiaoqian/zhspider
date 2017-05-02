@@ -18,11 +18,12 @@ def index(request):
         sp_list1 = ScreenPlay.objects.filter(name__contains=search)
         sp_list2 = ScreenPlay.objects.filter(filling_unit__contains=search)
         sp_list3 = ScreenPlay.objects.filter(author__contains=search)
-        screenplay_list = sp_list1 | sp_list2 | sp_list3
+        sp_list4 = ScreenPlay.objects.filter(period__contains=search)
+        screenplay_list = sp_list1 | sp_list2 | sp_list3 | sp_list4
     else:
         screenplay_list = ScreenPlay.objects.all()
 
-    screenplay_list = screenplay_list.order_by("name")
+    screenplay_list = screenplay_list.order_by("-period")
 
     screenplay_count = screenplay_list.count()
 

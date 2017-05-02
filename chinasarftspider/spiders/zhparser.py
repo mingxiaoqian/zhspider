@@ -15,10 +15,37 @@ class ZhParser:
         }
         self.url = url
 
+    def check_and_update_period(self, period, dtime):
+        try:
+            xlist = period.split("年")
+            year = dtime.split(':')[1].split('-')[0]
+            if year == xlist[0]:
+                return period
+            xlist[0] = "%s年" % year
+            print("update period ", period, '->', ''.join(xlist))
+            return ''.join(xlist)
+        except:
+            print("check and update period fail,", period, dtime)
+            return period
+
     def parse_item(self, response):
         # print(str(response.url))
 
         selector = Selector(response)
+
+        try:
+            title = selector.xpath("//div[contains(@class, 'heading')]/text()").extract()[0]
+            period = title.split("关于")[1].split("全国")[0]
+        except:
+            period = "unknown"
+
+        try:
+            dtime = selector.xpath("//div[contains(@class, 'time')]/ul/li/text()").extract()[0]
+            if period in ['2011年06月（下旬）']:
+                period = self.check_and_update_period(period, dtime)
+        except:
+            pass
+
         boxcontent = selector.xpath("//div[contains(@class, 'cc boxcontent')]")
         typetable = boxcontent.xpath("//div[contains(@class, 'ta1')]/ul/li/span/text()").extract()
         # print(len(typetable))
@@ -40,7 +67,6 @@ class ZhParser:
                     headrow = False
                     continue
 
-
                 wrong_list = []
 
                 item = ChinasarftspiderItem()
@@ -50,41 +76,41 @@ class ZhParser:
                 if len(td_list) > 0:
                     item['case_no'] = td_list[0]
                 else:
-                    wrong_list.append(tableheader[i-1])
+                    wrong_list.append(tableheader[i - 1])
 
                 td_list = row.xpath("td[%d]/a/@onclick" % i).extract()
                 if len(td_list) > 0:
                     item["case_url"] = self.url + td_list[0].split("'")[1]
                 else:
-                    wrong_list.append(tableheader[i-1])
+                    wrong_list.append(tableheader[i - 1])
 
                 i = 3
                 td_list = row.xpath("td[%d]/text()" % i).extract()
                 if len(td_list) > 0:
                     item['name'] = td_list[0]
                 else:
-                    wrong_list.append(tableheader[i-1])
+                    wrong_list.append(tableheader[i - 1])
 
                 i = 4
                 td_list = row.xpath("td[%d]/text()" % i).extract()
                 if len(td_list) > 0:
                     item['filling_unit'] = td_list[0]
                 else:
-                    wrong_list.append(tableheader[i-1])
+                    wrong_list.append(tableheader[i - 1])
 
                 i = 5
                 td_list = row.xpath("td[%d]/text()" % i).extract()
                 if len(td_list) > 0:
                     item['author'] = td_list[0]
                 else:
-                    wrong_list.append(tableheader[i-1])
+                    wrong_list.append(tableheader[i - 1])
 
                 i = 6
                 td_list = row.xpath("td[%d]/text()" % i).extract()
                 if len(td_list) > 0:
                     item['result'] = td_list[0]
                 else:
-                    wrong_list.append(tableheader[i-1])
+                    wrong_list.append(tableheader[i - 1])
 
                 i = 7
                 td_list = row.xpath("td[%d]/text()" % i).extract()
@@ -94,10 +120,11 @@ class ZhParser:
                     elif tableheader[6] == "备案时间":
                         item['case_time'] = td_list[0]
                 else:
-                    wrong_list.append(tableheader[i-1])
+                    wrong_list.append(tableheader[i - 1])
 
                 item["case_type"] = case_type
                 item["path_url"] = response.url
+                item["period"] = period
 
                 self.process_total_item()
                 if len(wrong_list) > 0:

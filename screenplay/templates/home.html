@@ -47,7 +47,7 @@
                 <th style="text-align:center;width:4em;border:1px solid #AFADAE;" align="center">编剧</th>
                 <th style="text-align:center;width:8em;border:1px solid #AFADAE;" align="center">备案结果</th>
                 <th style="text-align:center;width:8em;border:1px solid #AFADAE;" align="center">影片类型</th>
-                <th style="text-align:center;width:8em;border:1px solid #AFADAE;" align="center">通知链接</th>
+                <th style="text-align:center;width:8em;border:1px solid #AFADAE;" align="center">公示时间</th>
             </tr>
             {% for post in post_list %}
             <tr height="32px">
@@ -70,7 +70,7 @@
                     {{post.case_type}}
                 </td>
                 <td style="text-align:center; width:13em;border:1px solid #AFADAE;" valign="middle" align="center">
-                    <a href="{{post.path_url}}">点击查看</a>
+                    <a href="{{post.path_url}}">{{post.period}}</a>
                 </td>
             </tr>
             {% endfor %}
