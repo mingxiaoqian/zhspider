@@ -2,7 +2,27 @@
 
 {% block content %}
 <div class="posts">
-    <div class="heading">总计<a style="color: #ff7f50">{{post_count}}</a>全国电影剧本（梗概）备案、立项</div>
+    <div class="heading">总计<a style="color: #ff7f50">{{post_total}}</a>全国电影剧本（梗概）备案、立项</div>
+
+    <div id="toolbar">
+        <form id="changelist-search" method="get">
+            <div>
+                <label for="searchbar">
+                    <img src="/static/admin/img/search.svg" alt="Search">
+                </label>
+                <input id="searchbar" size="40" name="q" value="{{post_q}}" autofocus="" type="text">
+                <input value="Search" type="submit">
+                {% if post_q != "" %}
+                <span class="small quiet">
+                    {{post_count}} results (
+                    <a href="?">{{post_total}} total</a>
+                    )
+                    </span>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
     <p>
         <a href="?page=1">首页</a>
         {% if post_list.has_previous %}
@@ -15,6 +35,8 @@
         {% endif %}
         <a href="?page={{ post_list.paginator.num_pages }}">尾页</a>
     </p>
+
+
     <div id="divt1" style="margin: 0px auto">
         <table width="100%" bordercolor="#AFADAE" border="0px" style="border-collapse:collapse">
             <tbody>
