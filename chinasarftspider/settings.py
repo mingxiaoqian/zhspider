@@ -11,8 +11,10 @@
 
 import os
 import sys
+import screenplay
 
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + "../../../screenplay"))
+print(screenplay.__file__)
+# sys.path.append(os.path.abspath(os.path.dirname(__file__) + "../../../screenplay"))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'screenplay.settings'
 
 # from django.core.wsgi import get_wsgi_application
@@ -75,9 +77,7 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'chinasarftspider.pipelines.ChinasarftspiderPipeline': 300,
-}
+ITEM_PIPELINES = {'chinasarftspider.pipelines.ChinasarftspiderPipeline': 300, }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
