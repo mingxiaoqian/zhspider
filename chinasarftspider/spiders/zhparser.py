@@ -148,4 +148,4 @@ class ZhParser:
 
     def print_statistics(self):
         for k in self.__item_statistics:
-            print(k, ":", self.__item_statistics[k])
+            print("%s : %d"%(k, self.__item_statistics[k]))

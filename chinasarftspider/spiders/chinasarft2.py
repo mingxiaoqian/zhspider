@@ -31,7 +31,7 @@ class ChinaSarft2(Spider):
             if check_new_url(article_url):
                 yield Request(article_url, callback=self.__zhparser.parse_item)
             else:
-                print("skip ---> ", article_url)
+                print("skip ---> %s" % article_url)
 
         next_link = selector.xpath("//a[contains(.//text(), '下一页')]/@href").extract()
         if len(next_link) == 1:

@@ -27,7 +27,7 @@ class ChinaSarft(CrawlSpider):
 
     def parse_item(self, response):
         if not check_new_url(response.url):
-            print("skip ---> ", response.url)
+            print("skip ---> %s" % response.url)
             return
 
         res = self.__zhparser.parse_item(response)
