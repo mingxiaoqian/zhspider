@@ -34,7 +34,7 @@ BROKER_URL = 'redis://127.0.0.1:6379/0'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/1'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
-CELERY_ENABLE_UTC = False
+CELERY_ENABLE_UTC = True
 CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERY_TASK_RESULT_EXPIRES = 10
 CELERY_ACCEPT_CONTENT = ['pickle', 'json', 'msgpack', 'yaml']
@@ -126,7 +126,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
